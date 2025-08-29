@@ -19,7 +19,8 @@ from classes.description import (
 )
 from classes.embeddings import PlayerEmbeddings, CountryEmbeddings, PersonEmbeddings
 
-from classes.visual import Visual, DistributionPlot, DistributionPlotPersonality
+
+from classes.visual import DistributionPlot, RadarPlot
 
 import utils.sentences as sentences
 from utils.gemini import convert_messages_format
@@ -154,7 +155,9 @@ class Chat:
             st.write(content)
 
         # Visual
-        elif isinstance(content, Visual):
+        elif isinstance(content, DistributionPlot):
+            content.show()
+        elif isinstance(content, RadarPlot):
             content.show()
 
         else:
