@@ -56,26 +56,109 @@ st.write(llm_output)
 # 3. Ask evaluation questions
 st.subheader("Evaluation Questions")
 
-faithfulness = st.slider("How faithful is the text to the ground truth?", 1, 7, 4)
-clarity = st.slider("How clear/readable is the text?", 1, 7, 4)
-trust = st.slider("How trustworthy/useful is the text?", 1, 7, 4)
+#----------------------------------------
+#faithfulness = st.slider("How faithful is the text to the ground truth?", 1, 7, 4)
+#clarity = st.slider("How clear/readable is the text?", 1, 7, 4)
+#trust = st.slider("How trustworthy/useful is the text?", 1, 7, 4)
 
-hallucination = st.radio("Does the text contain hallucinations (unsupported claims)?", ["No", "Yes"])
-comment = st.text_area("Optional comments:")
+# Initialize start time
+if "start_time" not in st.session_state:
+    st.session_state.start_time = time.time()
+
+entity_name = "Candidate A"
+
+
+# Helper function to create a voting question
+def vote_question(key, question, options):
+    st.write(question)
+    cols = st.columns(len(options))
+    if key not in st.session_state:
+        st.session_state[key] = None
+    for i, (col, label) in enumerate(zip(cols, options), start=1):
+        if col.button(label, key=f"{key}_{i}"):
+            st.session_state[key] = i
+
+vote_question("vote1", "Does the generated text accurately represent the candidate as depicted in the plot?", 
+              ["Completely inaccurate", "Mostly inaccurate", "Mostly accurate", "Completely accurate"])
+
+vote_question("vote2", "Is the text engaging?", 
+              ["Not engaging", "Somewhat engaging", "Engaging", "Very engaging"])
+# if entity_name in personality_test:
+vote_question("vote3", "How useful would this description be if you were making a hiring decision?", 
+              ["Very unuseful", "Unuseful", "Useful", "Very useful"])
+
+#elif entity_name  in football:
+#vote_question("vote3", "How useful this description is to get information on a football player?", 
+#              ["Very unuseful", "Unuseful", "Useful", "Very useful"])
+#else entity_name in wvs:
+#vote_question("vote3", "How useful would this description is to understand how the world value works?"), 
+#              ["Very unuseful", "Unuseful", "Useful", "Very useful"])
+
+
+
+if "hallucination" not in st.session_state:
+    st.session_state.hallucination = None
+
+if "comment" not in st.session_state:
+    st.session_state.comment = ""
+
+st.session_state.hallucination = st.radio("Does the text contain hallucinations (unsupported claims)?", ["No", "Yes"])
+st.session_state.comment = st.text_area("Optional comments:")
+
 
 # 4. Save response + response time
+
 if st.button("Submit and Continue"):
     response_time = time.time() - st.session_state.start_time
     st.session_state.start_time = time.time()
 
-    st.success("Response submitted! ✅")
-    st.write({
+    response_data = {
         "entity": entity_name,
-        "metric": metric,
-        "faithfulness": faithfulness,
-        "clarity": clarity,
-        "trust": trust,
-        "hallucination": hallucination,
-        "comment": comment,
+        "vote1": st.session_state.vote1,
+        "vote2": st.session_state.vote2,
+        "vote3": st.session_state.vote3,
+        "hallucination": st.session_state.hallucination,
+        "comment": st.session_state.comment,
         "response_time_sec": round(response_time, 2),
-    })
+    }
+
+    st.success("Response submitted! ✅")
+    st.write(response_data)
+
+    st.subheader("Session State Debug:")
+    st.json(st.session_state)
+
+# send the evaluation
+import smtplib
+from email.mime.text import MIMEText
+
+# Simulated survey result
+#survey_result = {
+#    "vote1": st.session_state.get("vote1", None),
+#    "vote2": st.session_state.get("vote2", None),
+#    "vote3": st.session_state.get("vote3", None),
+#    "hallucination": st.session_state.get("hallucination", None),
+#    "comment": st.session_state.get("comment", ""),
+#}
+
+#if st.button("Send Survey via Email"):
+#    sender_email = "your_email@gmail.com"
+#    receiver_email = "recipient@example.com"
+#    password = "your_app_password"  # Use app password for Gmail
+
+#    # Create email message
+#    subject = "Survey Results"
+#    body = f"Here are the survey results:\n\n{survey_result}"
+#    msg = MIMEText(body)
+#    msg["Subject"] = subject
+#    msg["From"] = sender_email
+#    msg["To"] = receiver_email
+
+#    try:
+#        with smtplib.SMTP_SSL("smtp.gmail.com", 465) as server:
+#            server.login(sender_email, password)
+#            server.sendmail(sender_email, receiver_email, msg.as_string())
+#        st.success("Survey results sent successfully! ✅")
+#    except Exception as e:
+#        st.error(f"Error sending email: {e}")
+# 
