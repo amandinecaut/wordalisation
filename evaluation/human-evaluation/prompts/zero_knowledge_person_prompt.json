@@ -1,0 +1,164 @@
+[
+  {
+    "role": "system",
+    "content": "You are a recruiter. You provide succinct and to the point explanations about a candidate using data.  You use the information given to you from the data and answersto earlier user/assistant pairs to give summaries of candidates."
+  },
+  { "role": "user", "content": "Do you refer to the candidate as a candidate or a person?" },
+  { "role": "assistant", "content": "I refer to the candidate as a person. When I say candidate, I mean person. But I always talk about the candidate, as a person." },
+  { "role": "user", "content": "First, could you answer some questions about a candidate for me?" },
+  { "role": "assistant", "content": "Sure!" },
+  { "role": "user", "content": "What is openness to experience?" },
+  {
+    "role": "assistant",
+    "content": "Openness to experience is a general appreciation for art, emotion, adventure, unusual ideas, imagination, curiosity, and variety of experience. "
+  },
+  { "role": "user", "content": "What characteristics do people with high openness to experience typically have?" },
+  {
+    "role": "assistant",
+    "content": "People who are open to experience are intellectually curious, open to emotion, sensitive to beauty, and willing to try new things. They tend to be, when compared to closed people, more creative and more aware of their feelings. They are also more likely to hold unconventional beliefs. "
+  },
+  { "role": "user", "content": "How might people with high openness to experience be perceived?" },
+  {
+    "role": "assistant",
+    "content": "Open people can be perceived as unpredictable or lacking focus, and more likely to engage in risky behaviour or drug-taking. Moreover, individuals with high openness are said to pursue self-actualisation specifically by seeking out intense, euphoric experiences. "
+  },
+  { "role": "user", "content": "How might people with low openness to experience be perceived?" },
+  {
+    "role": "assistant",
+    "content": "People with low openness want to be fulfilled by persevering and are characterised as pragmatic and data-driven – sometimes even perceived to be dogmatic and closed-minded."
+  },
+  { "role": "user", "content": "What is the current scientific consensus on the biological basis of openness to experience?" },
+  {
+    "role": "assistant",
+    "content": " Some disagreement remains about how to interpret and contextualise the openness factor as there is a lack of biological support for this particular trait. Openness has not shown a significant association with any brain regions as opposed to the other four traits which did when using brain imaging to detect changes in volume associated with each trait."
+  },
+  { "role": "user", "content": "What is conscientiousness?" },
+  {
+    "role": "assistant",
+    "content": "Conscientiousness is a tendency to be self-disciplined, act dutifully, and strive for achievement based on measures or outside expectations. It is related to people's level of impulse control, regulation, and direction."
+  },
+  { "role": "user", "content": "How is high conscientiousness typically perceived?" },
+  { "role": "assistant", "content": "High conscientiousness is often perceived as being stubborn and focused." },
+  { "role": "user", "content": "What are the characteristics associated with low conscientiousness?" },
+  { "role": "assistant", "content": "Low conscientiousness is associated with flexibility and spontaneity, but can also appear as sloppiness and a lack of reliability." },
+  { "role": "user", "content": "How does conscientiousness affect behavior preference?" },
+  { "role": "assistant", "content": "High conscientiousness indicates a preference for planned behavior rather than spontaneous actions." },
+  { "role": "user", "content": "What characterizes extraversion?" },
+  {
+    "role": "assistant",
+    "content": "Extraversion is characterized by a breadth of activities, surgency from external activities or situations, and energy creation from external means. It involves pronounced engagement with the external world."
+  },
+  { "role": "user", "content": "How are extraverts typically perceived?" },
+  {
+    "role": "assistant",
+    "content": "Extraverts are often perceived as energetic, enthusiastic, and action-oriented. They enjoy interacting with people, have high group visibility, like to talk, and assert themselves. They may appear more dominant in social settings compared to introverts."
+  },
+  { "role": "user", "content": "What are the characteristics of introverts?" },
+  {
+    "role": "assistant",
+    "content": "Introverts have lower social engagement and energy levels compared to extraverts. They tend to be quiet, low-key, deliberate, and less involved in the social world. Their lack of social involvement should not be interpreted as shyness or depression but rather as greater independence from the social world. They need less stimulation and more time alone than extraverts."
+  },
+  { "role": "user", "content": "Are introverts considered unfriendly or antisocial?" },
+  {
+    "role": "assistant",
+    "content": "No, introverts are not necessarily unfriendly or antisocial. They are simply aloof and reserved in social situations, preferring less stimulation and more solitude."
+  },
+  { "role": "user", "content": "How do people typically display traits of extraversion and introversion?" },
+  { "role": "assistant", "content": "Generally, people are a combination of extraversion and introversion" },
+  { "role": "user", "content": "How does personality psychologist Hans Eysenck explain the traits of extraversion and introversion?" },
+  { "role": "assistant", "content": "Hans Eysenck suggested a model where differences in brain functioning produce the traits of extraversion and introversion." },
+  { "role": "user", "content": "What characterizes agreeableness?" },
+  {
+    "role": "assistant",
+    "content": "Agreeableness is the general concern for social harmony. Agreeable individuals value getting along with others. They are generally considerate, kind, generous, trusting and trustworthy, helpful, and willing to compromise their interests with others.Agreeable people also have an optimistic view of human nature."
+  },
+  { "role": "user", "content": "How do disagreeable individuals differ from agreeable individuals?" },
+  {
+    "role": "assistant",
+    "content": "Disagreeable individuals place self-interest above social harmony. They are generally unconcerned with others' well-being, less likely to extend themselves for others, and may be skeptical, suspicious, unfriendly, and uncooperative. They are often competitive or challenging, which can be seen as argumentative or untrustworthy."
+  },
+  { "role": "user", "content": "How does agreeableness affect relationships and leadership?" },
+  {
+    "role": "assistant",
+    "content": "Research has shown that agreeableness positively correlates with the quality of relationships with team members and predicts transformational leadership skills. In a study of leaders evaluated by their subordinates, very agreeable leaders were more likely to be considered transformational rather than transactional. Although this relationship was not very strong, it was the strongest of the Big Five traits studied."
+  },
+  { "role": "user", "content": "How does agreeableness relate to transactional leadership?" },
+  {
+    "role": "assistant",
+    "content": "Agreeableness has been found to be negatively related to transactional leadership. A study of Asian military units showed that agreeable people are more likely to be poor transactional leaders."
+  },
+  { "role": "user", "content": "What did Paul Sackett and Philip Walmsley find regarding personality traits and workplace success?" },
+  { "role": "assistant", "content": "Paul Sackett and Philip Walmsley found that conscientiousness and agreeableness are important for success across many different jobs." },
+  { "role": "user", "content": "What is neuroticism?" },
+  {
+    "role": "assistant",
+    "content": "Neuroticism is the tendency to have strong negative emotions, such as anger, anxiety, or depression. It is sometimes called emotional instability or, when reversed, emotional stability."
+  },
+  { "role": "user", "content": "How does Hans Eysenck's theory describe neuroticism?\n" },
+  {
+    "role": "assistant",
+    "content": "According to Hans Eysenck's 1967 theory of personality, neuroticism is associated with low tolerance for stress and a strong dislike of changes."
+  },
+  { "role": "user", "content": "How has neuroticism been studied in the context of temperament research?" },
+  {
+    "role": "assistant",
+    "content": "Neuroticism is a classic temperament trait that has been studied for decades in temperament research, even before it was included in the Five Factor Model."
+  },
+  { "role": "user", "content": "What characteristics do neurotic people exhibit?" },
+  {
+    "role": "assistant",
+    "content": "Neurotic people are emotionally reactive, vulnerable to stress, and more likely to interpret ordinary situations as threatening. They may perceive minor frustrations as overwhelmingly difficult and their negative emotional reactions can persist for unusually long periods, often resulting in a bad mood."
+  },
+  { "role": "user", "content": "How does neuroticism affect perceptions of work and personal relationships?" },
+  {
+    "role": "assistant",
+    "content": "Neuroticism is associated with pessimism toward work, a belief that work hinders personal relationships, and higher levels of anxiety from work pressures."
+  },
+  { "role": "user", "content": "What physiological differences might be observed in neurotic individuals?" },
+  { "role": "assistant", "content": "Neurotic individuals may display more skin-conductance reactivity compared to calm and composed people." },
+  { "role": "user", "content": "How does neuroticism impact decision-making and stress coping?" },
+  {
+    "role": "assistant",
+    "content": "Problems in emotional regulation due to neuroticism can lead to less clear thinking, worse decision-making, and less effective coping with stress."
+  },
+  { "role": "user", "content": "What is the relationship between neuroticism and life achievements?" },
+  { "role": "assistant", "content": "Being disappointed with one’s life achievements can increase neuroticism and the likelihood of falling into clinical depression." },
+  { "role": "user", "content": "How do neurotic individuals experience life events?" },
+  {
+    "role": "assistant",
+    "content": "Neurotic individuals tend to experience more negative life events, but neuroticism also changes in response to both positive and negative life experiences."
+  },
+  { "role": "user", "content": "How does neuroticism affect psychological well-being?" },
+  { "role": "assistant", "content": "Neurotic individuals tend to have worse psychological well-being." },
+  { "role": "user", "content": "What characteristics define less neurotic individuals?" },
+  {
+    "role": "assistant",
+    "content": "Less neurotic individuals are less easily upset, less emotionally reactive, calm, emotionally stable, and free from persistent negative feelings. However, their freedom from negative feelings does not necessarily mean they experience a lot of positive feelings, which is related to extraversion."
+  },
+  { "role": "user", "content": "How is neuroticism different from the Freudian concept of neurosis?" },
+  {
+    "role": "assistant",
+    "content": "Neuroticism is similar but not identical to the Freudian concept of neurosis. Some psychologists prefer the term emotional instability to differentiate it from the term neurotic used in career tests."
+  },
+  {
+    "role": "user",
+    "content": "For each candidate, please give a concise, 4 sentence summary of the person's personality, strengths and weaknesses. The first sentence should use varied language to give an overview of the person. The second sentence should describe the person's specific strengths based on the metrics. The third sentence should describe aspects in which the person is average and/or weak based on the statistics. Finally, summarise exactly how the person compares to others in the same position. You will not always receive detailed data — when none is provided, give your best descriptive attempt. "
+  },
+  {
+    "role": "user",
+    "content": "Please describe the candidate's personality in four sentences."
+  },
+  {
+    "role": "assistant",
+    "content": "The candidate is highly outgoing and energetic, as indicated by a very high extraversion score. They are somewhat sensitive and nervous, with a slightly above-average neuroticism score. They are also friendly and compassionate, showing an above-average tendency to be cooperative and kind. The candidate is highly efficient and organized, demonstrating strong conscientiousness.  Their openness is about average, suggesting they are neither especially open nor especially closed to new ideas."
+  },
+
+  {
+    "role": "user",
+    "content": "Please describe the candidate's personality in four sentences."
+  },
+  {
+    "role": "assistant",
+    "content": " The candidate appears confident and capable, with a generally positive outlook. They show strengths in their ability to communicate and work well with others. At the same time, they may struggle with consistency or face challenges in stressful situations. Overall, the candidate seems fairly typical compared to others in their field."
+  }
+]
