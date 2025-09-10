@@ -49,10 +49,10 @@ class DistributionPlot:
         self.fig.update_xaxes(
             range=[-4, 4],
             fixedrange=True,
-            tickmode="array",
-            tickvals=[-3, 0, 3],
-            ticktext=["Worse", "Average", "Better"],
-            showgrid=True,
+            #tickmode="array",
+            #tickvals=[-3, 0, 3],
+            #ticktext=["Worse", "Average", "Better"],
+            showgrid=False,
             gridcolor=rgb_to_color(hex_to_rgb("#6a5acd"), 0.7),
         )
         self.fig.update_yaxes(
