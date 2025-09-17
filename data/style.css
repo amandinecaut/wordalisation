@@ -81,10 +81,10 @@ div[data-testid="stSidebarUserContent"] div[data-testid="stLinkButton"]>a>div>p 
 }
 
 /* Dropdowns */
-
 ul[data-testid="stVirtualDropdown"]>div>div>li[aria-selected="true"] {
     background:linear-gradient(to right, #dc6d51, #f8de84); /* dropdown menu */
 }
+
 
 div[data-testid="stSelectbox"]>div>div {
     background: #ffffff;
