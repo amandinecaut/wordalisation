@@ -141,17 +141,14 @@ def show_demographics():
 
     st.session_state.education = st.selectbox("5. What is your highest level of education?", ["High School", "Bachelor's", "Master's", "PhD", "Other", "Prefer not to say"])
 
-    st.session_state.familiarity = st.selectbox(
-        "6. How familiar are you with data visualizations?",
-        ["Not familiar", "Somewhat familiar", "Familiar", "Very familiar"]
-    )
-    st.session_state.experience = st.selectbox(
-        "7. Do you have experience with data analysis or statistics?",
-        ["No experience", "Some experience", "Experienced", "Expert"]
-    )
     st.session_state.english = st.selectbox(
         "8. How would you rate your English proficiency?",
         ["Basic", "Intermediate", "Advanced", "Native"]
+    )
+    
+    st.session_state.experience = st.selectbox(
+        "7. Do you have experience with data analysis or statistics?",
+        ["No experience", "Some experience", "Experienced", "Expert"]
     )
     st.session_state.familiarity_gpt = st.selectbox(
         "9. How familiar are you with AI language models like GPT-3 or GPT-4?",
@@ -170,7 +167,6 @@ def show_demographics():
             "occupation": st.session_state.occupation,
             "location": st.session_state.location,
             "education": st.session_state.education,
-            "familiarity": st.session_state.familiarity,
             "experience": st.session_state.experience,
             "english": st.session_state.english,
             "familiarity_gpt": st.session_state.familiarity_gpt,
