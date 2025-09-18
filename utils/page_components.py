@@ -79,14 +79,14 @@ def set_page_config():
 
 def add_page_selector():
     st.image("data/ressources/img/logo_white.png")
-    # st.page_link("pages/about.py", label="About")
-    st.page_link("pages/football_scout.py", label="Football Scout")
-    st.page_link("pages/embedder.py", label="Embdedding Tool")
-    st.page_link("pages/wvs_chat.py", label="World Value Survey")
-    st.page_link("pages/personality_test.py", label="Personality Test")
-    st.page_link("pages/own_page.py", label="Your Own Page")
-    st.page_link("pages/evaluation.py", label="Evaluation")
-    st.page_link("pages/generate-evaluation.py", label="Generate Eval Data")
+    
+    # st.page_link("pages/football_scout.py", label="Football Scout")
+    # st.page_link("pages/embedder.py", label="Embdedding Tool")
+    # st.page_link("pages/wvs_chat.py", label="World Value Survey")
+    # st.page_link("pages/personality_test.py", label="Personality Test")
+    # st.page_link("pages/own_page.py", label="Your Own Page")
+    st.page_link("app.py", label="Evaluation")
+    # st.page_link("pages/generate-evaluation.py", label="Generate Eval Data")
 
     # st.image("data/ressources/img/TwelveEdu.png")
 
