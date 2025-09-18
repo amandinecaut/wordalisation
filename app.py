@@ -133,7 +133,7 @@ def show_demographics():
     age_input = st.number_input("1. How old are you? (optional)", min_value=10, max_value=120, step=1, value=18)
     st.session_state.age = age_input if age_input else None
 
-    st.session_state.gender = st.selectbox("2. What is your gender?", ["Male", "Female", "Other", "Prefer not to say"])
+    st.session_state.gender = st.selectbox("2. What is your gender?", ["Male", "Female", "Prefer not to say"])
 
     st.session_state.occupation = st.text_input("3. What is your occupation?")
 

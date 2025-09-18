@@ -62,7 +62,7 @@ def insert_local_css():
 
 
 
-def set_page_config():
+def set_page_config(sidebar_state="expanded"):
     """
     Sets the page configuration for the app.
     """
@@ -70,7 +70,7 @@ def set_page_config():
         layout="centered",
         page_title="Wordalisation",
         page_icon="data/ressources/img/logo_mini.png",
-        initial_sidebar_state="expanded",
+        initial_sidebar_state=sidebar_state,
         menu_items={
             "Report a bug": "mailto:matthias@twelve.football?subject=Bug report"
         },
@@ -120,16 +120,16 @@ def add_common_page_elements():
     Returns:
         sidebar_container: A container in the sidebar to hold all other sidebar elements.
     """
-    # Set page config must be the first st. function called
-    set_page_config()
+    set_page_config(sidebar_state="auto")
+    
     # Insert local CSS as fast as possible for better display
     insert_local_css()
     # Create a page selector
     page_selector_container = st.sidebar.container()
     sidebar_container = st.sidebar.container()
 
-    page_selector_container = st.sidebar.container()
-    sidebar_container = st.sidebar.container()
+    # page_selector_container = st.sidebar.container()
+    # sidebar_container = st.sidebar.container()
 
     with page_selector_container:
         add_page_selector()
