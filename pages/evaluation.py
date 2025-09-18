@@ -14,7 +14,7 @@ from classes.data_source import PlayerStats, PersonStat, CountryStats
 from classes.data_point import Player
 from classes.visual import DistributionPlot, RadarPlot
 from utils.page_components import add_common_page_elements
-
+import streamlit.components.v1 as components
 
 # st.set_page_config(layout="wide")
 
@@ -72,13 +72,16 @@ def show_entity_plots(entity_type, entity_name, metrics):
 
 def vote_question(key, question, options, number=None):
     label = f"**{number}. {question}**" if number else f"**{question}**"
-    return st.pills(label=label, options=options, key=key)
+    if st.session_state.get(key) is None:
+        st.session_state[key] = None
+    st.pills(label=label, options=options,  key=key)
 
 
 def reset_questions():
     for key in ["faithfulness", "engagement", "usefulness", "hallucination", "comment"]:
-        st.session_state.pop(key, None)
-
+        if key in st.session_state:
+            del st.session_state[key]
+    
 
 # ------------------------------
 # Intro Page
@@ -111,16 +114,115 @@ def show_intro():
 
 
 # ------------------------------
+# Demographics Page
+# ------------------------------
+def show_demographics():
+    if "rater_id" not in st.session_state:
+        st.session_state.rater_id = str(uuid.uuid4())
+    st.title("Before we start, a few questions about you")
+
+    st.markdown("""
+    We are interested in understanding how different people perceive the generated descriptions.  
+    Your answers will help us analyze the results better.  
+
+    **Please note:** All responses are anonymous and confidential.  
+    We do not collect any personal information beyond what you provide here.  
+    You can skip any question you prefer not to answer.  
+    """)
+
+    age_input = st.number_input("1. How old are you? (optional)", min_value=10, max_value=120, step=1, value=18)
+    st.session_state.age = age_input if age_input else None
+
+    st.session_state.gender = st.selectbox("2. What is your gender?", ["Male", "Female", "Other", "Prefer not to say"])
+
+    st.session_state.occupation = st.text_input("3. What is your occupation?")
+
+    st.session_state.location = st.text_input("4. Where are you located?")
+
+    st.session_state.education = st.selectbox("5. What is your highest level of education?", ["High School", "Bachelor's", "Master's", "PhD", "Other", "Prefer not to say"])
+
+    st.session_state.familiarity = st.selectbox(
+        "6. How familiar are you with data visualizations?",
+        ["Not familiar", "Somewhat familiar", "Familiar", "Very familiar"]
+    )
+    st.session_state.experience = st.selectbox(
+        "7. Do you have experience with data analysis or statistics?",
+        ["No experience", "Some experience", "Experienced", "Expert"]
+    )
+    st.session_state.english = st.selectbox(
+        "8. How would you rate your English proficiency?",
+        ["Basic", "Intermediate", "Advanced", "Native"]
+    )
+    st.session_state.familiarity_gpt = st.selectbox(
+        "9. How familiar are you with AI language models like GPT-3 or GPT-4?",
+        ["Not familiar", "Somewhat familiar", "Familiar", "Very familiar"]
+    )
+    st.session_state.usage_gpt = st.selectbox(
+        "10. How often do you use AI language models like GPT-3 or GPT-4?",
+        ["Never", "Rarely", "Sometimes", "Often", "Very often"]
+    )
+    if st.button("Save and Proceed to Evaluation ✅"):
+        # Save demographic data
+        demographics_df=pd.DataFrame([{
+            "rater_id": st.session_state.rater_id,
+            "age": st.session_state.age,
+            "gender": st.session_state.gender,
+            "occupation": st.session_state.occupation,
+            "location": st.session_state.location,
+            "education": st.session_state.education,
+            "familiarity": st.session_state.familiarity,
+            "experience": st.session_state.experience,
+            "english": st.session_state.english,
+            "familiarity_gpt": st.session_state.familiarity_gpt,
+            "usage_gpt": st.session_state.usage_gpt,
+            "timestamp": pd.Timestamp.now().isoformat()
+        }])
+        conn = st.connection("gsheets", type=GSheetsConnection)
+        existing_data = conn.read(ttl=0, worksheet="Demographic_Info")
+        updated_data = pd.concat([existing_data, demographics_df], ignore_index=True)
+        conn.update(worksheet="Demographic_Info", data=updated_data)
+
+
+        st.session_state.get_demographics = False
+        st.session_state.show_evaluation = True
+        st.show_intro = False
+        st.rerun()
+        # get_demographics
+        
+
+
+# ------------------------------
 # Evaluation Page
 # ------------------------------
 def show_evaluation():
     st.set_page_config(layout="wide")
+    if "scroll_to_top" not in st.session_state:
+        st.session_state.scroll_to_top = False
+    
+    if st.session_state.scroll_to_top:
+        components.html(
+            "<script>try{window.parent.scrollTo({top:0,behavior:'smooth'});}catch(e){try{window.top.scrollTo(0,0);}catch(e){}}</script>",
+            height=0,
+        )
+        st.session_state.scroll_to_top = False
+
+    
     df = pd.read_csv("evaluation/human-evaluation/data/all_descriptions.csv")
     conn = st.connection("gsheets", type=GSheetsConnection)
+    # add a get a different question button
+
+    # Right-align the button using columns
+    button_col = st.columns([7, 2])[1]
+    with button_col:
+        st.button(
+            "Get a Different Question",
+            on_click=lambda: st.session_state.update(
+                current_entity=random.choice([item for item in list(df[['Name', 'entity']].itertuples(index=False, name=None)) if item not in st.session_state.seen])
+            )
+        )
+
 
     # Session state init
-    if "rater_id" not in st.session_state:
-        st.session_state.rater_id = str(uuid.uuid4())
     if "seen" not in st.session_state:
         st.session_state.seen = set()
     if "start_time" not in st.session_state:
@@ -181,6 +283,8 @@ def show_evaluation():
 
         vote_question("hallucination", "Does the text contain hallucinations (unsupported claims)?", ["No", "Yes"], 4)
 
+        
+
         if st.session_state.get("hallucination") == "Yes":
             st.session_state.comment = st.text_area(
                 "**5. Please highlight hallucinated parts of the text (optional):**"
@@ -218,13 +322,15 @@ def show_evaluation():
 
                 st.success("✅ Response submitted!")
                 time.sleep(2)
-
+            
                 # Reset for next round
                 reset_questions()
                 st.session_state.current_entity = None
                 st.session_state.start_time = time.time()
                 st.session_state.submitting = False
+                st.session_state.scroll_to_top = True
                 st.rerun()
+                
 
 
 # ------------------------------
@@ -232,5 +338,7 @@ def show_evaluation():
 # ------------------------------
 if st.session_state.get("show_intro", True):
     show_intro()
+elif st.session_state.get("get_demographics", True):
+    show_demographics()
 else:
     show_evaluation()
