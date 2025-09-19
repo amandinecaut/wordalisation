@@ -11,7 +11,7 @@ tiktoken
 python-jose==3.3.0
 customerio==2.1
 scipy==1.16.1
-plotly==6.0.1
+plotly==6.0.3
 matplotlib==3.10.0
 sklearn-pandas==2.2.0
 openpyxl==3.1.5
