@@ -212,7 +212,7 @@ def show_evaluation():
     button_col = st.columns([7, 2])[1]
     with button_col:
         st.button(
-            "Get a Different Question",
+            "Get a different question",
             on_click=lambda: st.session_state.update(
                 current_entity=random.choice([item for item in list(df[['Name', 'entity']].itertuples(index=False, name=None)) if item not in st.session_state.seen])
             )
@@ -263,9 +263,15 @@ def show_evaluation():
 
     # Centered description + questions
     
-    center_col = st.columns([2, 6, 2])[1]
+    center_col = st.columns([1, 8, 1])[1]
     with center_col:
-        st.subheader("Description")
+        if entity_type == "person":
+            st.subheader("Here is a description for a job candidate:")
+        elif entity_type == "country":
+            st.subheader(f"Here is a description for {entity_name}:")
+        else:
+            st.subheader(f"Here is a description of the football player {entity_name}:")
+        
         st.write(row.LLMResponse)
 
         st.subheader("Questions")
