@@ -54,9 +54,11 @@ def show_entity_plots(entity_type, entity_name, metrics):
         dataset = PersonStat()
         dataset.calculate_statistics(metrics=metrics)
     elif entity_type == "player":
+        metrics = list(metrics_name.keys())
         entity = select_player(entity_name, metrics)
         dataset = PlayerStats()
         dataset.calculate_statistics(metrics=metrics)
+        metrics = list(metrics_name.values())
     else:  # country
         entity = select_country(entity_name, metrics)
         dataset = CountryStats()
@@ -243,15 +245,17 @@ def show_evaluation():
     if entity_type == "person":
         metrics = ["extraversion", "neuroticism", "agreeableness", "conscientiousness", "openness"]
     elif entity_type == "player":
-        #metrics = [
-        #    "npxG_adjusted_per90", "goals_adjusted_per90", "assists_adjusted_per90",
-        #    "key_passes_adjusted_per90", "smart_passes_adjusted_per90",
-        #    "final_third_passes_adjusted_per90", "final_third_receptions_adjusted_per90",
-        #    "ground_duels_won_adjusted_per90", "air_duels_won_adjusted_per90",
-        #]
-        metrics = ["non-penalty expected goals","goals","assists","key passes",
-                "smart passes","final passes","final third receptions","ground duels","air duels",
-        ]
+        metrics = {
+            "npxG_adjusted_per90": "non-penalty expected goals",
+            "goals_adjusted_per90": "goals",
+            "assists_adjusted_per90": "assists",
+            "key_passes_adjusted_per90": "key passes",
+            "smart_passes_adjusted_per90": "smart passes",
+            "final_third_passes_adjusted_per90": "final third passes",
+            "final_third_receptions_adjusted_per90": "final third reception",
+            "ground_duels_won_adjusted_per90": "ground duels",
+            "air_duels_won_adjusted_per90": "air duels",
+        }
     else:  # country
         metrics = [m for m in CountryStats().df.columns if m not in ["country"]]
 
