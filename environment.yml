@@ -1,0 +1,19 @@
+name: my_env
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.10
+  - pip
+  - pip:
+    - fastapi==0.104.1
+    - uvicorn==0.24.0.post1
+    - pandas==2.2.0
+    - requests==2.29.0
+    - streamlit==1.31.0
+    - numpy==1.26.3
+    - openai==0.28.1
+    - google-generativeai==0.7.2
+    - tiktoken
+    - python-jose==3.3.0
+    - customerio==2.1

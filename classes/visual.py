@@ -86,7 +86,6 @@ class DistributionPlot:
             self.fig.add_trace(
                 go.Violin(
                     x=dataframe[col].tolist(),
-                    #nbinsx=20,
                     name=self.cols[i],
                     marker=dict(color=colors[i % len(colors)]),
                     opacity=0.65,
@@ -103,26 +102,28 @@ class DistributionPlot:
                 go.Scatter(
                     x=[entity_value],
                     y=[self.cols[i]],
-                    mode="markers+text",
-                    marker=dict(symbol="diamond", size=10, color="#9340ff"),
-                    text=["Selected entity"],
-                    textposition="top center",
-                    showlegend=False,
+                    mode="markers", # if we want marker and text do "markers+text"
+                    marker=dict(symbol="diamond", size=8, color="#9340ff"),
+                    name="Selected entity",  # this will appear in the legend
+                    showlegend=(i == 0),  # ensures legend is shown
                     hovertemplate=f"<b>{self.cols[i]}</b><br>Value: %{{x}}<br>Rank: %{{customdata}}<extra></extra>",
                     customdata=[round(float(df_entity_rank.iloc[i]))]
-                ),
-                row=i+1,
-                col=1
-                )
+                    ),
+                    row=i+1,
+                    col=1
+                    )
+
 
         # Update layout
         self.fig.update_layout(
             template="plotly_white",
             height=500,
             title=dict(text="<b>Distribution of Metrics</b>", x=0.5, font=dict(size=18)),
-            showlegend=False,
+            showlegend=True,
             margin=dict(t=60, b=50, l=60, r=30),
         )
+
+        
 
         # Add grid & font styling
         self.fig.update_xaxes(showgrid=True, gridcolor="rgba(200,200,200,0.3)")
@@ -189,7 +190,7 @@ class RadarPlot:
         self.entity = entity.ser_metrics
 
 
-        self.background =  hex_to_rgb("#faf9ed")
+        #self.background =  hex_to_rgb("#faf9ed")
         self.color = hex_to_rgb("#faf9ed")
         self.fig = go.Figure()
         self.set_visualization()
@@ -249,7 +250,7 @@ class RadarPlot:
                 )
             ),
             margin=dict(l=40, r=40, t=40, b=40),
-            paper_bgcolor="white",
+            #paper_bgcolor="white",
             plot_bgcolor="white",
             showlegend=False,
         )

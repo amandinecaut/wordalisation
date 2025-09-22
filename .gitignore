@@ -16,4 +16,5 @@ twelve_chat.bat
 .env
 user_info.json
 clustering.ipynb
-
+analysis_pipeline_v2.py
+personality test Q&A/*

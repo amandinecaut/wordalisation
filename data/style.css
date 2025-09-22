@@ -1,3 +1,6 @@
+/* style.css — updated: make selected dropdown item gradient stretch to right edge */
+
+/* --- fonts --- */
 @font-face {
     font-family: "Gilroy-Medium";
     src: replace_font_url_medium format("truetype");
@@ -8,6 +11,7 @@
     src: replace_font_url_light format("truetype");
 }
 
+/* --- toolbar/sidebar etc (kept from your original file) --- */
 div[data-testid="stToolbar"] { 
     display: none;
 }
@@ -38,18 +42,17 @@ div[data-testid="stSidebarUserContent"] div[data-testid="stMarkdownContainer"] {
 }
 
 /* Share feedback link button */
-
 div[data-testid="stSidebarUserContent"] div[data-testid="stLinkButton"] {
     background-color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
     border: 0;
-    border-radius: 4px;
+    /*border-radius: 4px;*/
 }
 
 div[data-testid="stSidebarUserContent"] div[data-testid="stLinkButton"]:hover {
     background-color: #009940;
-    transition: 0.4s;
+    transition: 0.2s;
 }
 
 div[data-testid="stSidebarUserContent"] div[data-testid="stLinkButton"]>a {
@@ -67,7 +70,6 @@ div[data-testid="stSidebarUserContent"] div[data-testid="stLinkButton"]>a:hover 
     border: 0;
 }
 
-
 div[data-testid="stSidebarUserContent"] div[data-testid="stLinkButton"]>a>div {
     color: var(--text-color);
 }
@@ -80,12 +82,14 @@ div[data-testid="stSidebarUserContent"] div[data-testid="stLinkButton"]>a>div>p 
     font-weight: 600;
 }
 
-/* Dropdowns */
-ul[data-testid="stVirtualDropdown"]>div>div>li[aria-selected="true"] {
-    background:linear-gradient(to right, #dc6d51, #f8de84); /* dropdown menu */
+/* Dropdown menu */
+
+ul[data-testid="stVirtualDropdown"] >div>div>li[aria-selected="true"] { 
+    background: linear-gradient(to right, #dc6d51, #f8de84);
 }
 
 
+/* keep dropdown container backgrounds white (kept from original file) */
 div[data-testid="stSelectbox"]>div>div {
     background: #ffffff;
 }
@@ -106,7 +110,7 @@ button[data-testid="baseButton-header"] {
     color: rgb(255, 255, 255);
 }
 
-
+/* rest of your original styles preserved below */
 section[tabindex="0"]>div[data-testid="stAppViewBlockContainer"] {
     max-width: 70rem;
 }
@@ -234,22 +238,14 @@ button[data-testid="baseButton-primary"] {
     border-color: darkgrey;
     left: 3.2rem;
 }
-
-/* Sidebar Gradient Background */
-
-/*[data-testid="stSidebar"] { */
-/*    background: linear-gradient(to bottom, #4A90E2, #9013FE) !important; /* change colors as needed */
-/*    color: white; */
-/*} */
-
+/* Sidebar container */
 [data-testid="stSidebar"] {
     /* If you want only an image */
-    background:replace_bg_url; 
+    background:replace_bg_url;
     background-size: cover;   /* scale image to cover sidebar */
     background-repeat: no-repeat;
     color: white;
 }
-
 div[data-testid="stSidebar"] * {
     color: white !important; /* ensure text stays visible */
 }
