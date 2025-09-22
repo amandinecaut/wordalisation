@@ -34,8 +34,8 @@ def select_person(player_name, metrics):
 
 def select_player(player_name, metrics):
     players = PlayerStats()
-    metrics = list(metrics_dict.keys())
-    players.calculate_statistics(metrics=metrics)
+    metrics_dict = metrics
+    players.calculate_statistics(metrics=list(metrics_dict.keys()))
     player = copy.deepcopy(players)
     player.df = player.df[player.df["player_name"] == player_name]
     return player.to_data_point(gender="male", position="Forward")
@@ -55,10 +55,9 @@ def show_entity_plots(entity_type, entity_name, metrics):
         dataset = PersonStat()
         dataset.calculate_statistics(metrics=metrics)
     elif entity_type == "player":
-        metrics = list(metrics_dict.keys())
-        entity = select_player(entity_name, metrics)
+        entity = select_player(entity_name, list(metrics_dict.keys()))
         dataset = PlayerStats()
-        dataset.calculate_statistics(metrics=metrics)
+        dataset.calculate_statistics(metrics=list(metrics_dict.keys()))
         metrics = list(metrics_dict.values())
     else:  # country
         entity = select_country(entity_name, metrics)
@@ -246,7 +245,7 @@ def show_evaluation():
     if entity_type == "person":
         metrics = ["extraversion", "neuroticism", "agreeableness", "conscientiousness", "openness"]
     elif entity_type == "player":
-        metrics_dict = {
+        metrics = {
             "npxG_adjusted_per90": "non-penalty expected goals",
             "goals_adjusted_per90": "goals",
             "assists_adjusted_per90": "assists",
@@ -257,7 +256,7 @@ def show_evaluation():
             "ground_duels_won_adjusted_per90": "ground duels",
             "air_duels_won_adjusted_per90": "air duels",
         }
-        metrics = list(metrics_dict.keys())
+        
     else:  # country
         metrics = [m for m in CountryStats().df.columns if m not in ["country"]]
 
