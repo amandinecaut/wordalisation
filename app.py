@@ -257,6 +257,7 @@ def show_evaluation():
             "ground_duels_won_adjusted_per90": "ground duels",
             "air_duels_won_adjusted_per90": "air duels",
         }
+        metrics = list(metrics_dict.keys())
     else:  # country
         metrics = [m for m in CountryStats().df.columns if m not in ["country"]]
 
