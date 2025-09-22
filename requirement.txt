@@ -15,4 +15,4 @@ plotly==6.0.3
 matplotlib==3.10.0
 sklearn-pandas==2.2.0
 openpyxl==3.1.5
-st-gsheets-connection
+st-gsheets-connection==0.1.0
