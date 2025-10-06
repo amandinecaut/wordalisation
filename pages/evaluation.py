@@ -16,7 +16,7 @@ from classes.visual import DistributionPlot, RadarPlot
 from utils.page_components import add_common_page_elements
 import streamlit.components.v1 as components
 
-# st.set_page_config(layout="wide")
+st.set_page_config(layout="wide")
 
 add_common_page_elements()  # your common sidebar/header
 
@@ -54,9 +54,11 @@ def show_entity_plots(entity_type, entity_name, metrics):
         dataset = PersonStat()
         dataset.calculate_statistics(metrics=metrics)
     elif entity_type == "player":
+        metrics = list(metrics_name.keys())
         entity = select_player(entity_name, metrics)
         dataset = PlayerStats()
         dataset.calculate_statistics(metrics=metrics)
+        metrics = list(metrics_name.values())
     else:  # country
         entity = select_country(entity_name, metrics)
         dataset = CountryStats()
@@ -133,7 +135,7 @@ def show_demographics():
     age_input = st.number_input("1. How old are you? (optional)", min_value=10, max_value=120, step=1, value=18)
     st.session_state.age = age_input if age_input else None
 
-    st.session_state.gender = st.selectbox("2. What is your gender?", ["Male", "Female", "Other", "Prefer not to say"])
+    st.session_state.gender = st.selectbox("2. What is your gender?", ["Male", "Female", "Prefer not to say"])
 
     st.session_state.occupation = st.text_input("3. What is your occupation?")
 
@@ -247,12 +249,18 @@ def show_evaluation():
     if entity_type == "person":
         metrics = ["extraversion", "neuroticism", "agreeableness", "conscientiousness", "openness"]
     elif entity_type == "player":
-        metrics = [
-            "npxG_adjusted_per90", "goals_adjusted_per90", "assists_adjusted_per90",
-            "key_passes_adjusted_per90", "smart_passes_adjusted_per90",
-            "final_third_passes_adjusted_per90", "final_third_receptions_adjusted_per90",
-            "ground_duels_won_adjusted_per90", "air_duels_won_adjusted_per90",
-        ]
+        metrics = {
+            "npxG_adjusted_per90": "non-penalty expected goals",
+            "goals_adjusted_per90": "goals",
+            "assists_adjusted_per90": "assists",
+            "key_passes_adjusted_per90": "key passes",
+            "smart_passes_adjusted_per90": "smart passes",
+            "final_third_passes_adjusted_per90": "final third passes",
+            "final_third_receptions_adjusted_per90": "final third reception",
+            "ground_duels_won_adjusted_per90": "ground duels",
+            "air_duels_won_adjusted_per90": "air duels",
+        }
+
     else:  # country
         metrics = [m for m in CountryStats().df.columns if m not in ["country"]]
 
