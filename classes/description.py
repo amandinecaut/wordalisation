@@ -413,9 +413,12 @@ class CountryDescription(Description):
 
     def get_prompt_messages(self):
         prompt = (
-            f"Please use the statistical description enclosed with ``` to give a concise, 2 short paragraph summary of the social values held by population of the country. "
-            f"The first paragraph should focus on any factors or values for which the country is above or bellow average. If the country is neither above nor below average in any values, mention that. "
-            f"The remaining paragraph should mention any specific values or factors that are neither high nor low compared to the average. "
+            f"Using the statistical description enclosed in ```, write a short, engaging summary (3–4 sentences) of the country’s social values."
+            f"If there are several ways in which a country stands one the first two sentences should highlight these, expressed in a natural and people-focused way."
+            f"If there is only one or two differences then these should be summarised in a single sentence."
+            f"The next sentence should  then briefly list the respects the country is close to the global average. "
+            f"The final sentence should express what these values might mean for how citizens see themselves or are characterized as a society."
+            f" Keep the tone concise, interpretive, and people-oriented rather than technical."
         )
         return [{"role": "user", "content": prompt}]
 
