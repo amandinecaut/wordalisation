@@ -487,13 +487,14 @@ class PersonDescription(Description):
         elif -1 < value <= -0.5:
             return "The candidate is quite "
         elif -0.5 < value <= 0.5:
-            return "The candidate is relatively "
+            return "The candidate is only slightly "
         elif 0.5 < value <= 1:
             return "The candidate is quite "
         elif 1 < value <= 2:
             return "The candidate is very "
         else:
             return "The candidate is extremely "
+
 
     def all_max_indices(self, row):
         max_value = row.max()
@@ -743,10 +744,11 @@ class PersonDescription(Description):
 
     def get_prompt_messages(self):
         prompt = (
-            f"Please use the statistical description enclosed with ``` to give a concise, 4 sentence summary of the person's personality, strengths and weaknesses. "
-            f"The first sentence should use varied language to give an overview of the person. "
-            "The second sentence should describe the person's specific strengths based on the metrics. "
-            "The third sentence should describe aspects in which the person is average and/or weak based on the statistics. "
-            "Finally, summarise exactly how the person compares to others in the same position. "
+            f"Use the statistical personality description provided below to write 3 sentences describing the person."
+             "The first sentence should provide a general description of the person."
+             "The second sentence should mention any particular strengths or potential challenges reported. "
+             "The third sentence should conclude what type of professional environment they will likely thrive in."
+             "Maintain an HR-appropriate tone and the text should be interpretive but not speculative. "
+             "The sentences should flow naturally and read like a professional, concise summary rather than a list."
         )
         return [{"role": "user", "content": prompt}]
