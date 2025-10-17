@@ -202,7 +202,7 @@ class DistributionPlot:
                     borderwidth=1,
                     borderpad=4
                 )
-                self.fig.update_layout(title=dict(text="<b>Additional informations</b>",x=2, font=dict(size=10)))
+                
 
 
              # Add left/right labels --
