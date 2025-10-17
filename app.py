@@ -12,7 +12,7 @@ from streamlit_gsheets import GSheetsConnection
 from classes.explainer import CountryExplanationProvider, PersonExplanationProvider
 from classes.data_source import PlayerStats, PersonStat, CountryStats
 from classes.data_point import Player
-from classes.visual import DistributionPlot, RadarPlot
+from classes.visual import DistributionPlot#, RadarPlot
 from utils.page_components import add_common_page_elements
 import streamlit.components.v1 as components
 
