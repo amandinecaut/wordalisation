@@ -140,7 +140,7 @@ class DistributionPlot:
                     # hovertemplate=f"<b>{self.cols[i]}</b><br>Value: %{{x}}<br>Count: %{{y}}<extra></extra>"
                     hoverinfo="skip", hovertemplate=None,
                     # hoveron="all",
-                    points='none',
+                    points=False,
                 ),
                 row=i+1,
                 col=1
