@@ -274,7 +274,7 @@ def show_evaluation():
     row = df[(df['Name'] == entity_name) & (df['entity'] == entity_type)].iloc[0]
 
     # Show reference plot
-    st.subheader(f"Ground Truth Reference for {entity_name} ({entity_type})")
+    st.subheader(f"Data for {entity_name} ({entity_type})")
     if entity_type == "person":
         metrics = ["extraversion", "neuroticism", "agreeableness", "conscientiousness", "openness"]
     elif entity_type == "player":
