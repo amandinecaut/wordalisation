@@ -268,7 +268,7 @@ class DistributionPlot:
                 font=dict(size=14)
             ),
             margin=dict(t=50, b=50, l=45, r=355),
-            height = 90*len(self.cols),
+            height = 85*len(self.cols),
         )
 
     
