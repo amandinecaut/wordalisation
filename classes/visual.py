@@ -257,9 +257,7 @@ class DistributionPlot:
         # Update layout
         self.fig.update_layout(
             template="plotly_white",
-            #title=dict(text="<b>Additional informations</b>",x=0.50, font=dict(size=14)),
             showlegend=True,
-            # margin=dict(t=50, b=50, l=45, r=25),
             font = dict(size=14),
             # autosize=True,
             legend=dict(
@@ -269,7 +267,8 @@ class DistributionPlot:
                 x=1,
                 font=dict(size=14)
             ),
-            margin=dict(t=50, b=50, l=45, r=350)
+            margin=dict(t=50, b=50, l=45, r=350),
+            height = 250*len(self.cols))
         )
 
     
