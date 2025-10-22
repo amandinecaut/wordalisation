@@ -128,10 +128,10 @@ def show_intro():
         4. Hallucinations – Are there unsupported claims?  
 
     **How it works:**  
-    - Each page shows **one entity** with its plot + description.  
-    - Answer the four questions, then submit.  
-    - You can evaluate as many as you like (we’d be grateful for at least one).  
-    - You are free to exit anytime.  
+    - Each page shows **one entity** along with its plot and description.  
+    - Simply answer the four questions and click Submit.  
+    - Feel free to evaluate as many as you like (we’d be grateful for at least one).  
+    - You can leave anytime, no pressure.  
 
     ⚠️ **Note:** We do not collect personal info, only anonymous session activity.
     """)
@@ -297,7 +297,7 @@ def show_evaluation():
 
     # Centered description + questions
     
-    center_col = st.columns([1, 7, 1])[1]
+    center_col = st.columns([1, 8, 1])[1]
     with center_col:
         if entity_type == "person":
             st.subheader("Here is a description for a job candidate:")
