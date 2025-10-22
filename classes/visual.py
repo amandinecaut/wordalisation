@@ -122,7 +122,7 @@ class DistributionPlot:
             rows=len(self.cols),
             cols=1,
             shared_xaxes=True,  # Keep the same scale for all
-            vertical_spacing=0.01,
+            vertical_spacing=0.02,
             row_heights=[1/len(self.cols)]*len(self.cols)
         )
         
