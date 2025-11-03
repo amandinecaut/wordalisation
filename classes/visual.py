@@ -175,7 +175,7 @@ class DistributionPlot:
             if explanation.replace("<br>", "").strip():  # only if there's text
                 self.fig.add_annotation(
                     text=explanation,
-                    x=1.05,  # just outside the plot area but still within figure bounds
+                    x=1.1,  # just outside the plot area but still within figure bounds
                     y=self.cols[i],
                     xref="paper",  # anchor to figure, not subplot
                     yref=f"y{i+1}",  # reference the subplot’s y-axis
