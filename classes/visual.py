@@ -258,7 +258,7 @@ class DistributionPlot:
                 x=1,
                 font=dict(size=14)
             ),
-            margin=dict(l=72, r=450, t=40, b=40),  
+            margin=dict(l=60, r=500, t=40, b=40),  
             # height = 500,
             autosize=False,
             height=400 + 5* len(self.cols),  # scales height with number of violins
