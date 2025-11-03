@@ -6,7 +6,7 @@ class ExplanationProvider(ABC):
     def get_explanation(self, metric_name: str, entity, value: float) -> str:
         """ Rturns a short string to incluse in hover text"""
         pass
-    def wrap_text(self, text, width=65):
+    def wrap_text(self, text, width=85):
         """ Utility method to wrap text for better readability. """
         return "<br>".join(textwrap.wrap(text, width=width))
     

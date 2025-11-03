@@ -172,25 +172,13 @@ class DistributionPlot:
                     row=i+1,
                     col=1
                     )
-            # self.fig.add_annotation(
-            #     text=explanation,
-            #     x=1.5, y=0.75,   # relative placement inside subplot
-            #     xref=f"x{i+2} domain",
-            #     yref=f"y{i+2} domain",
-            #     showarrow=False,
-            #     font=dict(size=12, color="black"),
-            #     align="center",
-            #     bgcolor="rgba(237,222,250,0.3)",  # same color palette you used
-            #     bordercolor="#9340ff",
-            #     borderwidth=1,
-            #     )
 
 
             # --- Add explanation text to the right side of each violin, if it exists ---
             if explanation.replace("<br>", "").strip():  # only if there's text
                 self.fig.add_annotation(
                     text=explanation,
-                    x=1.1,  # slightly outside the plot area
+                    x=1.05,  # just outside the plot area but still within figure bounds
                     y=self.cols[i],
                     xref="paper",  # anchor to figure, not subplot
                     yref=f"y{i+1}",  # reference the subplot’s y-axis
@@ -252,6 +240,8 @@ class DistributionPlot:
                         xanchor="center",
                         yanchor="bottom"
                     )
+            
+            
 
 
             
@@ -268,11 +258,16 @@ class DistributionPlot:
                 x=1,
                 font=dict(size=14)
             ),
-            margin=dict(t=40, b=50, l=65, r=550),
-            height = 500,
+            margin=dict(l=72, r=450, t=40, b=40),  
+            # height = 500,
+            autosize=True,
+            height=400 + 5* len(self.cols),  # scales height with number of violins
+            
         )
 
-    
+        # make ALL subplots use the same x-domain
+        for i in range(1, len(self.cols) + 1):
+            self.fig.update_xaxes(domain=[0, 0.8], row=i, col=1)
         # Add grid & font styling
         self.fig.update_xaxes(showgrid=True, gridcolor="rgba(200,200,200,0.3)")
         # self.fig.update_yaxes(showgrid=False)
