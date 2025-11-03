@@ -91,7 +91,7 @@ def show_entity_plots(entity_type, entity_name, metrics):
         
     
 
-    center_col = st.columns([0.5, 9, 0.5])[1]
+    center_col = st.columns([0.2, 10, 0.2])[1]
     with center_col:
         visual_distribution.show()
 
