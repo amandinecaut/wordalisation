@@ -255,6 +255,7 @@ class DistributionPlot:
             margin=dict(l=80, r=500, t=40, b=40),  
             autosize=False,
             height=400 + 5* len(self.cols),  # scales height with number of violins
+            width=900
             
         )
 
