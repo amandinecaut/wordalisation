@@ -75,7 +75,7 @@ The wordalisation supports both GPT4o and ChatGPT and related APIs, as well as G
 
 The figure below summarises the wordalistation prompting methodology. The "Tell it who is it", "Tell is what it knows" and "Tell it how to answer" steps are discussed in the Context section and correspond to task-specific information and instructions. The "Tell is what data to use" step uses data related to a specific candidate and updates dynamically. This is discussed in section Retried Data.
 
-![wordalisation architecture](https://github.com/amandinecaut/wordalisation/blob/58ea0b101a197190fa604bd3a66d51417fc7f9ea/Prompt%20Cards/imgs/wordalisation_architecture.png)
+![wordalisation architecture](https://github.com/amandinecaut/wordalisation/blob/3af1f4ad44b9411a5c5cf609a27fb0acad99c6e4/Prompt%20Cards/imgs/wordalisation_architecture.png)
 
 ![wordalisation architecture](Prompt Cards/imgs/wordalisation_architecture.png)
 
