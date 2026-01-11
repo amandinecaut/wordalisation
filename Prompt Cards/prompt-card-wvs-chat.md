@@ -1,4 +1,4 @@
-# Prompt Card for World Value Survey Data Wordalisation and Chatbot
+# Prompt Card for World Value Survey Data Wordalisation
 
 In a nutshell, our app is a retrieval augmented chatbot for making reports about countries based on data derived from the [World Value Survey](www.worldvaluessurvey.org) (WVS). The app is implemented within the [TwelveGPT Education framework](https://github.com/soccermatics/twelve-gpt-educational) and is intended as an illustration of the _wordalisation_ method. It is thus intended as an example to help others build similar tools. The wordalisations are created by comparing a country's score across six social factors to its relative position within the distribution of scores across all countries. The chosen social factors, as well as the WVS, are discussed in the [Dataset](#dataset) section. 
 
