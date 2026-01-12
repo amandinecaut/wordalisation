@@ -1,4 +1,4 @@
-# Prompt card for World Value Survey Data Wordalisation and Chatbot
+# Prompt Card for World Value Survey Data Wordalisation
 
 In a nutshell, our app is a retrieval augmented chatbot for making reports about countries based on data derived from the [World Value Survey](www.worldvaluessurvey.org) (WVS). The app is implemented within the [TwelveGPT Education framework](https://github.com/soccermatics/twelve-gpt-educational) and is intended as an illustration of the _wordalisation_ method. It is thus intended as an example to help others build similar tools. The wordalisations are created by comparing a country's score across six social factors to its relative position within the distribution of scores across all countries. The chosen social factors, as well as the WVS, are discussed in the [Dataset](#dataset) section. 
 
@@ -10,7 +10,7 @@ Jump to section:
 
 - [Intended use](#intended-use)
 - [Model details](#model-details)
-- [Retrieved dataset](#retrieved-dataset)
+- [Dataset](#dataset)
 - [Context](#context)
 - [Prompt architecture](#prompt-architecture)
 - [Factors](#factors)
@@ -37,7 +37,11 @@ We would also strongly oppose the generalization or stereotyping of any group of
 - **References**: [GPT-4o System Card](https://arxiv.org/abs/2410.21276)   
 - **Contact point**: Amandine Caut, available at amandine.caut@math.uu.se
 
-## Retrieved Dataset
+### Language Model
+
+Our implementation supports both GPT4o and ChatGPT and related APIs, as well as Gemini API. Since these language model's training data included text about these countries, this knowledge will likely effect both the initial response and subsequent queries within the same chat. This means that some aspects of the answers may come from data external to that in the provided dataframe. 
+
+## Dataset
 
 The data used in this project was constructed from the [World Value Survey Wave 7 (2017-2022)](https://www.worldvaluessurvey.org/WVSDocumentationWV7.jsp). The data consists of coded answers to a questionnaire which can be found at the same link. The WVS questionnaire was taken by participants from 62 countries and 4 regions (Hong Kong, Macao, Northern Ireland and Puerto Rico) with sample sizes varying from 447 in Northern Ireland to 4018 in Canada. It is clear from the map shown in Figure 1 that the data is not uniformly distributed across the globe, with the number of sampled African and European countries being especially low.
 
@@ -72,13 +76,13 @@ In addition to the wordalisation of these factors we provide question and answer
 In addition, we provide question and answer pairs that are intend to provide good examples of how that chat bot should discuss the chosen country. These in-context-learning examples and can be found [here](https://github.com/soccermatics/twelve-gpt-educational/blob/wvs_chat/data/gpt_examples/WVS_examples.xlsx). The usage of the above mentioned question-answer pairs is detailed in the [Normative model](#normative-model) section.
 
 
-## Context
-
-### Quantitative model
+### Quantitative (Statistical Model) Model
 
 The model applies a mapping to the countries in the dataset along different value scales, see Table 2. For each metric, a z-score is calculated by subtracting the mean and dividing by the standard deviation over all countries' metric values in the dataset. The countries are then displayed in a distribution plot with the selected country highlighted, representing leaning on different value scales.
 
-### Normative model
+## Context
+
+### Normative Model
 
 A prompt is constructed in several parts (_tell it who it is_, _tell it what it knows_, _tell it how to answer_, _tell it what data to use_) in order to provide relevant context to the LLM. The prompt to _tell it who it is_ identifies a human role for the chatbot as a "Data Analyst". The user-assistant pairs in the stage of _tell it what it knows_ describe the general context of the chat domain and how the selected values can be [interpreted](https://github.com/soccermatics/twelve-gpt-educational/blob/wvs_chat/data/describe/WVS_qualities.xlsx) according to [1] and [2]. These descriptions outline the meaning of the values and take into account the question on which they are based. The penultimate prompt to _tell it how to answer_ provides [examples of expected outputs](https://github.com/soccermatics/twelve-gpt-educational/blob/wvs_chat/data/gpt_examples/WVS_examples.xlsx) given data about a certain country. The final prompt is to _tell it what data to use_ and is therefore customised for the selected country.
 
@@ -121,18 +125,14 @@ text = f"{country.name.capitalize()} was found to {words} compared to other coun
 
 ```
 
-#### Additional context
+#### Additional Context
 
 In addition to the factor z-score wordalisation, we also provided information about certain specific questions in the WVS survey. First we decide whether or not to provide additional information by checking if the magnitude of z-score for a given factor is above a chosen threshold (in our case 1). If so, then we provide a sentence that reports on the average answer to a question that contributed most to the factor. For increased interpetiablity we select a question with a positive (negative) contribution of the z-score is above (bellow) average. For example, if a given country has a z-score for "Traditional vs Secular Values" greater than 1, then we might provide a sentence that reports "In response to the question 'How important is God in your life?', on average participants indicated God to be 'very important' in their life". Similarly, if a given country has a z-score for the "Societal Tranquillity" less than -1, then we might provide a sentence that reports "In response to the question 'To what degree are you worried about the following situations? A civil war', on average participants indicated that they worry 'very much'."
-
-### Language model
-
-Our implementation supports both GPT4o and ChatGPT and related APIs, as well as Gemini API. Since these language model's training data included text about these countries, this knowledge will likely effect both the initial response and subsequent queries within the same chat. This means that some aspects of the answers may come from data external to that in the provided dataframe. 
 
 
 ## Prompt architecture
 
-The figure below summarises the wordalistation prompting methodology. The "Tell it who is it", "Tell is what it knows" and "Tell it how to answer" steps are discussed in the Context section and correspond to task-specific information and instructions. The "Tell is what data to use" step uses data related to a specific candidate and updates dynamically. This is discussed in section Retried Data.
+The figure below summarises the wordalisation prompting methodology. The "Tell it who is it", "Tell is what it knows", "Tell is what data to use" and "Tell it how to answer" steps are discussed in the [Context](#context) section and correspond to task-specific information and instructions. The raw data, data preprocessing and statistical model (z-scores) are documented in section [Dataset](#dataset). 
 
 ![wordalisation architecture](https://github.com/amandinecaut/wordalisation/blob/148922e7b179b20398492736b1d2096ce368234d/Prompt%20Cards/imgs/wordalisation_architecture.png)
 
@@ -142,7 +142,7 @@ Figure 0: Prompt architecture of the wordalisation process
 
 ## Factors
 
-The World Value Survey data and derived factors, discussed in section [Retrieved Dataset][#retrieved-dataset], relate to 66 countries that took part in the WVS "wave 7" 2017-2022 survey. We would like to state that any reports or chats about countries not included in the survey are not guaranteed to hold any merit. We also note that the participants of the "wave 7" survey constitute only a small sample of the population of each country, see Figures 1 and 2. Therefore, the values and statements presented in the app should not be considered representative of the entire population of any given country.
+The World Value Survey data and derived factors, discussed in section [Dataset][#dataset], relate to 66 countries that took part in the WVS "wave 7" 2017-2022 survey. We would like to state that any reports or chats about countries not included in the survey are not guaranteed to hold any merit. We also note that the participants of the "wave 7" survey constitute only a small sample of the population of each country, see Figures 1 and 2. Therefore, the values and statements presented in the app should not be considered representative of the entire population of any given country.
 
 ![WVS coverage](https://github.com/amandinecaut/wordalisation/blob/58ea0b101a197190fa604bd3a66d51417fc7f9ea/Prompt%20Cards/imgs/sample_size_map.png)
 
@@ -159,7 +159,7 @@ Figure 1: World Value Survey data collection distribution. The color-scale indic
 Figure 2: World Value Survey data collection distribution as a percentage of the countries population. The populations were taken from the [United Nations Department of Economic and Social Affairs](https://population.un.org/wpp/Download/Standard/CSV/) data on world population prospects in 2017 (the first year of "wave 7"). The color-scale indicates the log of the percentage of the population of each country that participated.
 
 
-## Quantitative analysis
+## Quantitative Analysis
 
 Qualitative evaluation during development allowed us to refine the prompt to ensure that the chatbot was providing satisfactory responses. Qualitative analysis is also import for identifying possible issues and to establish the limitations and usefulness of the application. 
 
@@ -201,15 +201,13 @@ Importantly, when comparing only the statistical and wordalisation texts, there 
 ![Evaluation](Prompt Cards/imgs/votes_percentage_per_metric.png)
 Figure 4: Human evaluation of three text variants (control, statistical, and wordalisation) across three metrics: faithfulness, engagement, and usefulness. Percentages of categorical ratings are shown for each text variant.
 
-
-
-## Data security
+## Data Security
 
 - Internet Use: The prompt requires the API access of the LLM.
 - Offline adaptability: Wordalisation can be adapted to an offline version.
 - Security assessment: We recommend that private data should not be sent in the chat of the prompt.
 
-## Ethical considerations
+## Ethical Considerations
 
 The World Value Survey is based on questionnaires filled out by a small sample of individuals from different countries around the world. In particular, we used data from the 7th wave of the survey which took place from 2017-2022. Samples are relatively small compared to the populations of the countries, see Figure 2. While data was collected from 66 regions, the data is not evenly distributed across the globe, with coverage in Africa and Europe being particularly sparse. Special status was also given to the regions of Hong Kong, Macao, Puerto Rico and Northern Ireland, which are not independent countries.
 
@@ -219,7 +217,7 @@ In the context of the factors mentioned in [Dataset](#dataset), the data can onl
 
 We also would like to note that it is an open question as to whether the derived factors summerised in Tables 1 and 2 give any meaningful insights and we would urge users to consider them within the research context in which they were derived, see [1] and [2] and the World Value Survey website [3]. 
 
-## Caveats and recommendations
+## Caveats and Recommendations
 
 We have no further caveats and recommendations.
 
