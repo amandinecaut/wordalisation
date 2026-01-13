@@ -47,6 +47,17 @@ metrics = [
 ]
 persons.calculate_statistics(metrics=metrics)
 
+
+# Read in prompt card text
+with open("Prompt Cards/prompt-card-personality-test.md", "r", encoding="utf8") as file:
+    # Read the contents of the file
+    prompt_card_text = file.read()
+
+
+st.expander("Prompt card for Personality Test", expanded=False).markdown(
+    prompt_card_text
+)
+
 with st.expander("Dataframe"):
     st.write(persons.df)
 
@@ -69,8 +80,6 @@ chat = create_chat(to_hash, PersonChat, person, persons)
 if chat.state == "empty":
     visual = visual_distribution
     visual2 = visual_radar
-    
-
 
     # Now call the description class to get the summary of the player
     description = PersonDescription(person)
@@ -86,10 +95,11 @@ if chat.state == "empty":
 
     # Use columns for side-by-side layout
     col1, col2 = st.columns(2)
-    with col1: visual.show()
-    with col2: visual2.show()
+    with col1:
+        visual.show()
+    with col2:
+        visual2.show()
 
-    
     chat.add_message(summary)
 
     chat.state = "default"
