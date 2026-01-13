@@ -6,9 +6,6 @@ metrics = [m for m in countries.df.columns if m not in ["country"]]
 
 countries.calculate_statistics(metrics=metrics)
 
-# # save countries.df to csv
-# countries.df.to_csv("data/wvs/countries.csv", index=False)
-
 
 import streamlit as st
 from utils.utils import select_country, create_chat
@@ -97,7 +94,7 @@ processed_text = replace_images_in_text(model_card_text)
 
 ####
 
-load_css("prompt cards/style/python-code.css")
+load_css("Prompt Cards/style/python-code.css")
 st.expander("Prompt card", expanded=False).markdown(
     processed_text,  # prompt_card_text,
     unsafe_allow_html=True,

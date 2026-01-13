@@ -47,6 +47,8 @@ metrics = [
 ]
 persons.calculate_statistics(metrics=metrics)
 
+
+
 with st.expander("Dataframe"):
     st.write(persons.df)
 
