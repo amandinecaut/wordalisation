@@ -93,7 +93,7 @@ def replace_images_in_text(text):
 
 
 # Process the text with image replacements
-processed_text = replace_images_in_text(model_card_text)
+processed_text = replace_images_in_text(prompt_card_text)
 
 ####
 
