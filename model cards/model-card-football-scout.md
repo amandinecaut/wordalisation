@@ -1,7 +1,7 @@
 # Model card for Football Scout Wordalisation
 
-The football scout is implemented within the [TwelveGPT Education framework](https://github.com/soccermatics/twelve-gpt-educational) and
-is intended as an illustration of the methods. Here we detail the specific application to football scouting. It is thus intended as an example to help others building wordalisations. The wordalisations describe players playing as strikers, for at least 300 minutes, in the Premier League 2017-18 season. This work is a derivative of the full [Twelve GPT product](https://twelve.football). The design and code for this project was by Matthias Green, David Sumpter and Ágúst Pálmason Morthens. 
+The football scout is implemented within the XXX and
+is intended as an illustration of the methods. Here we detail the specific application to football scouting. It is thus intended as an example to help others building wordalisations. The wordalisations describe players playing as strikers, for at least 300 minutes, in the Premier League 2017-18 season. This work is a derivative of the full XXX. The design and code for this project was by XXX, XXX and XX. 
 
 This model card is based on the [model cards paper](https://arxiv.org/abs/1810.03993) and is adapted specifically to Wordalisation applications as detailed in [Representing data in words](publication here). We also provide this model card as an example of 
 good practice for describing wordalisations.
@@ -26,7 +26,7 @@ The Football Scout Wordalisation is applied to a very specific demographic group
 
 ## Datasets
 
-The dataframe used in this project was constructed from a dataset of actions taken by [Premier League players](https://figshare.com/collections/Soccer_match_event_dataset/4415000/2) during the 2017-18 season. A *preprocessing* step, largely based on this [tutotrial](https://soccermatics.readthedocs.io/en/latest/lesson3/ScoutingPlayers.html), converted player actions to a dataframe of counts per ninety and corrected for possession of the ball. Only those players who play as forwards (an attacking role) are included in the dataset. The data includes the following metrics adjusted for possession per ninety minutes played: non-penalty expected goals (a measure of shot quality), goals, assists, key passes, smart passes, final third passes (those taking the ball into the opponents third of the pitch), final third receptions (of the ball), ground duels won and air duels won.
+The dataframe used in this project was constructed from a dataset of actions taken by [Premier League players](https://figshare.com/collections/Soccer_match_event_dataset/4415000/2) during the 2017-18 season. A *preprocessing* step, largely based on this XXX, converted player actions to a dataframe of counts per ninety and corrected for possession of the ball. Only those players who play as forwards (an attacking role) are included in the dataset. The data includes the following metrics adjusted for possession per ninety minutes played: non-penalty expected goals (a measure of shot quality), goals, assists, key passes, smart passes, final third passes (those taking the ball into the opponents third of the pitch), final third receptions (of the ball), ground duels won and air duels won.
 
 ## Model
 
